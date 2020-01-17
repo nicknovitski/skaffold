@@ -14,35 +14,35 @@
 
 # Download kubectl
 FROM alpine:3.10 as download-kubectl
-ENV KUBECTL_VERSION v1.12.8
+ENV KUBECTL_VERSION v1.17.1
 ENV KUBECTL_URL https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl
 RUN wget -O kubectl "${KUBECTL_URL}"
 RUN chmod +x kubectl
 
 # Download helm
 FROM alpine:3.10 as download-helm
-ENV HELM_VERSION v2.12.0
+ENV HELM_VERSION v3.0.2
 ENV HELM_URL https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz
 RUN wget -O helm.tar.gz "${HELM_URL}"
 RUN tar -xvf helm.tar.gz --strip-components 1
 
 # Download kustomize
 FROM alpine:3.10 as download-kustomize
-ENV KUSTOMIZE_VERSION 2.1.0
+ENV KUSTOMIZE_VERSION 3.5.4
 ENV KUSTOMIZE_URL https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64
 RUN wget -O kustomize "${KUSTOMIZE_URL}"
 RUN chmod +x kustomize
 
 # Download kompose
 FROM alpine:3.10 as download-kompose
-ENV KOMPOSE_VERSION v1.19.0
+ENV KOMPOSE_VERSION v1.20.0
 ENV KOMPOSE_URL https://github.com/kubernetes/kompose/releases/download/${KOMPOSE_VERSION}/kompose-linux-amd64
 RUN wget -O kompose "${KOMPOSE_URL}"
 RUN chmod +x kompose
 
 # Download container-structure-test
 FROM alpine:3.10 as download-container-structure-test
-ENV CONTAINER_STRUCTURE_TEST_VERSION v1.5.0
+ENV CONTAINER_STRUCTURE_TEST_VERSION v1.8.0
 ENV CONTAINER_STRUCTURE_TEST_URL https://storage.googleapis.com/container-structure-test/${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test-linux-amd64
 RUN wget -O container-structure-test "${CONTAINER_STRUCTURE_TEST_URL}"
 RUN chmod +x container-structure-test
@@ -56,7 +56,7 @@ RUN chmod +x kind
 
 # Download gcloud
 FROM alpine:3.10 as download-gcloud
-ENV GCLOUD_VERSION 274.0.0
+ENV GCLOUD_VERSION 276.0.0
 ENV GCLOUD_URL https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz
 RUN wget -O gcloud.tar.gz "${GCLOUD_URL}"
 RUN tar -zxf gcloud.tar.gz
